@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get   "login" => "users#login_form"
   post  "users/create" => "users#create"
   get   "users/dashboard" => "users#dashboard"
+  post  "logout" => "users#logout"
   get "/" => "home#top"
 end

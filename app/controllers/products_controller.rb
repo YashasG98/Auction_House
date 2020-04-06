@@ -24,10 +24,17 @@ class ProductsController < ApplicationController
       end
   
       if @product.save
+        flash[:notice] = 'Product added successfully!'
         @current_user.number_of_products += 1
         @current_user.save
         redirect_to("/users/dashboard")      
       else
+        @name = params[:name]
+        @description = params[:description]
+        @start_bid = params[:start_bid]
+        @deadline_date = params[:deadline_date]
+        @deadline_time = params[:deadline_time]
+        @image = params[:image]
         render("products/add")
       end
     end

@@ -16,12 +16,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <%= link_to("Home","/",class: "nav-item nav-link") %>
-          <%= link_to("Login","/login",class: "nav-item nav-link") %>
-          <%= link_to("Sign up","/signup",class: "nav-item nav-link") %>
-          <%= link_to("User dashboard","/users/dashboard",class: "nav-item nav-link") %>
-          <%= link_to("Add a product","/products/add",class: "nav-item nav-link") %>
-          <%= link_to("Shop","/products/shop",class: "nav-item nav-link") %>
+          <% if @current_user %>
+            <%= link_to("Dashboard","/users/dashboard",class: "nav-item nav-link") %>
+            <%= link_to("Add a product","/products/add",class: "nav-item nav-link") %>
+            <%= link_to("Let's bid!","/products/shop",class: "nav-item nav-link") %>
+            <%= link_to("Claim Products","/products/claim",class: "nav-item nav-link") %>
+            <%= link_to("Claimed Products","/products/claimed",class: "nav-item nav-link") %>
+            <%= link_to("My Products","/products/owned",class: "nav-item nav-link") %>
+            <%= link_to("Log out","/logout",{class: "nav-item nav-link",method:"post"}) %>
+          <%else%>
+            <%= link_to("Home","/",class: "nav-item nav-link") %>
+            <%= link_to("Login","/login",class: "nav-item nav-link") %>
+            <%= link_to("Sign up","/signup",class: "nav-item nav-link") %>
+          <%end%>
         </div>
       </div>
     </nav>

@@ -23,19 +23,19 @@
       </div>
       <div class="form-group">
         Description
-        <input class="form-control" name="description" value='<%= @name %>'>
+        <input class="form-control" name="description" value='<%= @description %>'>
       </div>
       <div class="form-group">
         Starting Bid (in Rs.)
-        <input class="form-control" name="start_bid" value='<%= @name %>'>
+        <input class="form-control" name="start_bid" value='<%= @start_bid%>'>
       </div>
       <div class="form-group">
         Deadline Date
-        <input class="form-control" type="date" name="deadline_date" value='<%= @name %>'>
+        <input class="form-control" type="date" name="deadline_date" value='<%= @deadline_date %>'>
       </div>
       <div class="form-group">
         Deadline Time
-        <input class="form-control" type="time" name="deadline_time" value='<%= @name %>'>
+        <input class="form-control" type="time" name="deadline_time" value='<%= @deadline_time %>'>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
     <% end %>

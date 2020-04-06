@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(contact: params[:contact])
     if @user && @user.authenticate(params[:password])
-      flash[:notice] = nil
+      flash[:notice] = 'Logged in successfully!'
       session[:user_id] = @user.id
       redirect_to("/users/dashboard")
     else
@@ -41,4 +41,10 @@ class UsersController < ApplicationController
   def login_form
   end
 
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "You have logged out successfully"
+    redirect_to("/")
+  end
+  
 end

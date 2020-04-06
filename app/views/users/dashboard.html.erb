@@ -18,7 +18,10 @@
   <%= link_to("/products/claimed") do%>
   <button type="button" class="btn btn-primary btn-lg btn-block" style='margin-bottom:1vh;'>Claimed products</button>
   <%end%>
-  <%= link_to("/products/add") do%>
+  <%= link_to("/products/owned") do%>
+  <button type="button" class="btn btn-primary btn-lg btn-block" style='margin-bottom:1vh;'>My products</button>
+  <%end%>
+  <%= link_to("/logout",{method:"post"}) do%>
   <button type="button" class="btn btn-danger btn-lg btn-block">Log out</button>
   <%end%>
 </div>
