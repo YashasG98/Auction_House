@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
       @product.user_id = @current_user.id
       @product.bidder_id = 0
       @product.bid_value = 0
+      @product.next_bid_value = params[:start_bid]
       @product.claimed = false
   
       if params[:image]
@@ -25,14 +26,31 @@ class ProductsController < ApplicationController
       if @product.save
         @current_user.number_of_products += 1
         @current_user.save
-        redirect_to("/users/#{@current_user.id}/dashboard")
+        redirect_to("/users/dashboard")      
       else
         render("products/add")
       end
     end
 
     def list
-      @products = Product.where.not(user_id: @current_user.id).where("deadline_date > ? OR (deadline_date = ? AND deadline_time > ?)", Date.current,Date.current,Time.now.seconds_since_midnight)
+      @products = Product.where.not(user_id: @current_user.id).where("deadline_date > ? OR (deadline_date = ? AND deadline_time > ?)", Date.today,Date.today,Time.now.seconds_since_midnight).where.not(bidder_id: @current_user.id)
     end
   
+    def new_bid
+      prod_id = params[:id]
+      product = Product.find_by(id: prod_id)
+      if product.next_bid_value <= @current_user.wallet
+        flash[:notice] = "Bid for product successfully!"
+        product.bid_value = product.next_bid_value
+        product.next_bid_value = 1.2*product.bid_value
+        product.bidder_id = @current_user.id
+        product.save
+        redirect_to("/users/dashboard")
+      else
+        @products = Product.where.not(user_id: @current_user.id).where("deadline_date > ? OR (deadline_date = ? AND deadline_time > ?)", Date.today,Date.today,Time.now.seconds_since_midnight).where.not(bidder_id: @current_user.id)
+        flash.now.alert = "Not enough balance"
+        render("products/list")
+      end
+    end
+    
   end

@@ -6,17 +6,30 @@
   </div>
 </div>
 <div class='container'>
+  <div class="card text-white bg-secondary text-center" style="width:100%;margin-bottom:2vh;">
+    <div class="card-body">
+      <h5 class="card-title">Wallet balance</h5>
+      <p class="card-text">&#x20b9;<%=@current_user.wallet%></p>
+    </div>
+  </div>
+</div>
+<div class='container'>
   <% @products.each do |product| %>
     <% @user = User.find_by(id: product.user_id)%>
-    <div class="card mb-3">
+    <div class="card mb-3" >
       <div class="row no-gutters">
-        <div class="col-md-4">
-          <%= image_tag("/assets/product_images/#{product.image}",class:"card-img") %>
+        <div class="col-md-4" style='border:1px solid black;'>
+          <%= image_tag("/assets/product_images/#{product.image}",class:"card-img",style:"display: inline-block;height: 100%;vertical-align: middle;") %>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
             <p class="card-text"><b>Contact</b>:<%="#{@user.contact}"%></p>
+            <p class="card-text"><b>Description</b>:<%=" #{product.description}"%></p>
+            <p class="card-text"><b>Bid Value</b>: &#x20b9;<%="#{product.next_bid_value}"%></p>
+            <%= link_to("/products/#{product.id}/new_bid",{method:"post"}) do%>
+              <button type="button" class="btn btn-outline-primary">Bid now!</button>
+            <%end%>
           </div>
         </div>
       </div>

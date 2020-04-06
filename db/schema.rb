@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_161254) do
+ActiveRecord::Schema.define(version: 2020_04_06_185610) do
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_161254) do
     t.integer "bidder_id"
     t.integer "bid_value"
     t.boolean "claimed"
+    t.integer "next_bid_value"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_161254) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.integer "number_of_products"
+    t.integer "wallet"
   end
 
 end
