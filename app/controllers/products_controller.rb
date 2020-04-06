@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :authenticate_user
+
     def add
       @product = Product.new
     end
