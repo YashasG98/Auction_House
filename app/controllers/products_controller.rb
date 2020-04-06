@@ -52,5 +52,27 @@ class ProductsController < ApplicationController
         render("products/list")
       end
     end
+
+    def claim_list
+      @products = Product.where(bidder_id: @current_user.id).where('deadline_date < ?', Date.today).where(claimed: false)
+    end
+
+    def claim
+      prod_id = params[:id]
+      product = Product.find_by(id: prod_id)
+      flash[:notice] = "Product claimed successfully!"
+      @current_user.wallet -= product.bid_value
+      @current_user.save
+      prod_owner = User.find_by(id: product.user_id)
+      prod_owner.wallet += product.bid_value
+      prod_owner.save
+      product.claimed = true
+      product.save
+      redirect_to("/users/dashboard")
+    end
+
+    def claimed
+      @products = Product.where(bidder_id: @current_user.id).where(claimed: true)
+    end
     
   end

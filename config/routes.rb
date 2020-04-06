@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get   "products/add" => "products#add"
   get   "products/shop" => "products#list"
   post  "products/:id/new_bid" => "products#new_bid"
+  get   "products/claim" => "products#claim_list"
+  post  "products/:id/claim" => "products#claim"
+  get   "products/claimed" => "products#claimed"
+
   post  "login" => "users#login"
   get   "signup" => "users#new"
   get   "login" => "users#login_form"
