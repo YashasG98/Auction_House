@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
 
+  #to authenticate user before restricted access
   before_action :authenticate_user, {only:[:dashboard]}
 
+  #to declare a user object for user about to sign up
+  #request: GET
   def new
     @user = User.new
   end
 
+  #to reqister a new user
+  #request: POST
   def create
     @user = User.new(
       name: params[:name],
@@ -23,9 +28,12 @@ class UsersController < ApplicationController
     end
   end
 
+  #to display the user dashboard
   def dashboard
   end
 
+  #to validate and upon success, login the user
+  #request: POST
   def login
     @user = User.find_by(contact: params[:contact])
     if @user && @user.authenticate(params[:password])
@@ -40,9 +48,13 @@ class UsersController < ApplicationController
     end
   end
 
+  #to display login_form
+  #request: GET
   def login_form
   end
 
+  #to logout currently logged in user
+  #request: POST
   def logout
     session[:user_id] = nil
     flash[:notice] = "You have logged out successfully"
