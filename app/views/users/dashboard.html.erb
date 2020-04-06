@@ -1,0 +1,18 @@
+<div class='container' id='signupBanner'>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Welcome, user!</h1>
+    </div>
+  </div>
+</div>
+<div class='container' id='marginTop'>
+  <%= link_to("/products/add") do%>
+    <button type="button" class="btn btn-primary btn-lg btn-block" style='margin-bottom:1vh;'>Add a product</button>
+  <%end%>
+  <%= link_to("/products/add") do%>
+  <button type="button" class="btn btn-primary btn-lg btn-block" style='margin-bottom:1vh;'>Let's bid!</button>
+  <%end%>
+  <%= link_to("/products/add") do%>
+  <button type="button" class="btn btn-danger btn-lg btn-block">Log out</button>
+  <%end%>
+</div>

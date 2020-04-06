@@ -9,7 +9,8 @@ class UsersController < ApplicationController
       name: params[:name],
       contact: params[:contact],
       address: params[:address],
-      password: params[:password]
+      password: params[:password],
+      number_of_products: 0
     )
     if @user.save
       session[:user_id] = @user.id
