@@ -1,0 +1,29 @@
+<div class='container' id='signupBanner'>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Your products</h1>
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <% @products.each do |product| %>
+    <% @user = User.find_by(id: product.bidder_id)%>
+    <div class="card mb-3" >
+      <div class="row no-gutters">
+        <div class="col-md-4" style='border:1px solid black;'>
+          <%= image_tag("/assets/product_images/#{product.image}",class:"card-img",style:"display: inline-block;height: 100%;vertical-align: middle;") %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><b>Description</b>:<%=" #{product.description}"%></p>
+            <p class="card-text"><b>Bid Value</b>: &#x20b9;<%="#{product.bid_value}"%></p>
+            <% if product.claimed %>
+              <button type="button-disabled" class="btn btn-outline-primary" disabled>Claimed by <%="#{@user.name}"%> </button>
+            <%end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

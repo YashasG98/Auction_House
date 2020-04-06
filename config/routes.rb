@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get   "products/claim" => "products#claim_list"
   post  "products/:id/claim" => "products#claim"
   get   "products/claimed" => "products#claimed"
+  get   "products/owned" => "products#owned"
 
   post  "login" => "users#login"
   get   "signup" => "users#new"

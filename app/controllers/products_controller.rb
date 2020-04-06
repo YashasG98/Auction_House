@@ -74,5 +74,9 @@ class ProductsController < ApplicationController
     def claimed
       @products = Product.where(bidder_id: @current_user.id).where(claimed: true)
     end
+
+    def owned
+      @products = Product.where(user_id: @current_user.id)
+    end
     
   end
