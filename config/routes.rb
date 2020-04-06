@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   post  "products/create" => "products#create"
   get   "products/add" => "products#add"
+  get   "products/shop" => "products#list"
   
   post  "login" => "users#login"
   get   "signup" => "users#new"

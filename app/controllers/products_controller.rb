@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
       if params[:image]
         @product.image = "#{@current_user.id}_#{@current_user.number_of_products}.jpg"
         image = params[:image]
-        File.binwrite("storage/product_images/#{@product.image}", image.read)
+        File.binwrite("public/assets/product_images/#{@product.image}", image.read)
       end
   
       if @product.save
@@ -29,6 +29,10 @@ class ProductsController < ApplicationController
       else
         render("products/add")
       end
+    end
+
+    def list
+      @products = Product.where.not(user_id: @current_user.id).where("deadline_date > ? OR (deadline_date = ? AND deadline_time > ?)", Date.current,Date.current,Time.now.seconds_since_midnight)
     end
   
   end
