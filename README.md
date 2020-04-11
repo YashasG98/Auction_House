@@ -57,8 +57,8 @@ sudo apt install nodejs
 Run the following code in your terminal to download the project.
 
 ```bash
-git clone https://github.com/YashasG98/IRIS_171CO154_Ruby-On-Rails.git
-cd IRIS_171CO154_Ruby-On-Rails/
+https://github.com/YashasG98/Auction_House.git
+cd Auction_House/
 ```
 
 Change the password (replace 'Game_server') at line 17 of config/database.yml to your local MySQL password. Run the following command inside the home folder and open http://localhost:3000/.
